@@ -10,7 +10,7 @@ namespace NetBoy
 {
     internal class Program
     {
-        static string path = "C:\\Roms\\Pokemon Blue.gb";
+        static string path = "C:\\Roms\\Pokemon Red.gb";
         const string title = "NetBoy";
 
 
@@ -24,7 +24,9 @@ namespace NetBoy
             {
                var cart = new Cart(path);
 
-                window.Init(title, 500, 500);
+
+
+               window.Init(title, 500, 500);
 
 
                 Thread.Sleep(2000000);

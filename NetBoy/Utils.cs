@@ -29,7 +29,10 @@ namespace NetBoy
         }
 
 
-
+        public static void NotImp(string something = "null")
+        {
+            Console.WriteLine($"{something} Not Implemented");
+        }
 
 
 
