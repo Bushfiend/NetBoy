@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetBoy.Machine;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace NetBoy
         static string path = "C:\\Roms\\Pokemon Blue.gb";
         const string title = "NetBoy";
 
+
         Window window = null;
         static void Main(string[] args)
         {
@@ -20,8 +22,7 @@ namespace NetBoy
 
             while (true)
             {
-                byte[] rom;
-                Utils.TryLoadRom(path, out rom);
+               var cart = new Cart(path);
 
                 window.Init(title, 500, 500);
 

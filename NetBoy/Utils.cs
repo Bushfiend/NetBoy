@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,27 +11,22 @@ namespace NetBoy
     public static class Utils
     {
 
-        public static bool TryLoadRom(string path, out byte[] rom)
+        public static string ConvertToTitleCase(string input)
         {
-            rom = null;
+            string[] words = input.Split(' ');
 
-            try
+            for (int i = 0; i < words.Length; i++)
             {
-                if(!File.Exists(path)) 
-                {
-                    Console.WriteLine("File not found.");
-                    return false;
-                }             
-                rom = File.ReadAllBytes(path);
-                Console.WriteLine($"Loading {Path.GetFileName(path)}. {rom.Length} bytes.");
+                if (string.IsNullOrWhiteSpace(words[i]))
+                    continue;
+
+                string firstLetter = words[i].Substring(0, 1).ToUpper(CultureInfo.InvariantCulture);
+                string restOfWord = words[i].Substring(1).ToLower(CultureInfo.InvariantCulture);
+                words[i] = firstLetter + restOfWord;
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return true;
+
+            return string.Join(" ", words);
         }
-
 
 
 

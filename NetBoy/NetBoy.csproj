@@ -57,10 +57,11 @@
   <ItemGroup>
     <Compile Include="Machine\Bus.cs" />
     <Compile Include="Machine\CPU.cs" />
+    <Compile Include="Machine\CartDefinitions.cs" />
     <Compile Include="Machine\Emulator.cs" />
     <Compile Include="Machine\Keypad.cs" />
     <Compile Include="Machine\PPU.cs" />
-    <Compile Include="Machine\Rom.cs" />
+    <Compile Include="Machine\Cart.cs" />
     <Compile Include="Machine\Timer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
