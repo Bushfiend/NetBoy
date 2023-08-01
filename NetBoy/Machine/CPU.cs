@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,14 +14,51 @@ namespace NetBoy.Machine
         private Cart Cartridge;
         private Bus Bus;
 
+        private int EmuCycles;
+
+        public byte CurrentOpcode;
+
         public CPU(Cart cart)
         {
             Cartridge = cart;
             Register = new Registers(cart.Header.Entry[0]);
+            Bus = new Bus(cart);
+            Register.PC = 0x100;
+            EmuCycles = 0;
 
+        }
+        //50 CE 66
+        public void Tick()
+        {
+            CurrentOpcode = Bus.Read(Register.PC);
+
+            Decode(CurrentOpcode);
+
+            Register.PC++;
         }
 
 
+
+        private void Decode(byte opcode)
+        {
+            if(!Instructions.Set.ContainsKey(opcode)) { Utils.InvalidOp(opcode); return; }
+
+
+
+            var instruction = Instructions.Set[opcode];
+
+
+            if(instruction.InstType == Instructions.InType.None)
+            {
+                Utils.NotImpl(opcode);
+                Register.PC--;
+            }
+            else
+            {
+                Utils.InInfo(opcode, instruction);
+            }
+
+        }
 
 
         public class Registers

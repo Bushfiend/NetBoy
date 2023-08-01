@@ -10,26 +10,31 @@ namespace NetBoy
 {
     internal class Program
     {
-        static string path = "C:\\Roms\\Pokemon Red.gb";
+        static string path = "C:\\Roms\\Pokemon Blue.gb";
         const string title = "NetBoy";
 
+        static CPU cpu;
 
         Window window = null;
         static void Main(string[] args)
         {
 
             Window window = new Window();
+            var cart = new Cart(path);
+
+            cpu = new CPU(cart);
+
 
             while (true)
             {
-               var cart = new Cart(path);
+                cpu.Tick();
 
 
 
-               window.Init(title, 500, 500);
+               //window.Init(title, 500, 500);
 
 
-                Thread.Sleep(2000000);
+                Thread.Sleep(2000);
             }
 
             

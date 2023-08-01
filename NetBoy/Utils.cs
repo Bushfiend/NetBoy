@@ -1,10 +1,13 @@
-﻿using System;
+﻿using NetBoy.Machine;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
+using static NetBoy.Machine.Instructions;
 
 namespace NetBoy
 {
@@ -29,11 +32,22 @@ namespace NetBoy
         }
 
 
-        public static void NotImp(string something = "null")
+        public static void InvalidOp(byte code)
         {
-            Console.WriteLine($"{something} Not Implemented");
+            Console.WriteLine($"Invalid Opcode ( 0x{code.ToString("X2")} )");
         }
 
+        public static void NotImpl(byte code)
+        {
+            Console.WriteLine($"Instruction (0x{code.ToString("X2")}) Not Implemented ");
+        }
+
+        public static void InInfo(byte code, Instructions.In instruction)
+        {
+            Console.WriteLine($"Instruction Type: {instruction.InstType} - (0x{code.ToString("X2")}). PC {Register.PC.ToString("X4")}. ");
+
+
+        }
 
 
     }

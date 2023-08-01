@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace NetBoy.Machine
 {
-    internal class PPU
+    public class PPU
     {
+
+
     }
+
+
 }

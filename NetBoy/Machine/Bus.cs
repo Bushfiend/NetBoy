@@ -34,14 +34,13 @@ namespace NetBoy.Machine
 
 
 
-        public byte BusRead(ushort address)
+        public byte Read(ushort address)
         {
             if(address < 0x8000)
             {
                 return Cartridge.RomData[address];
             }
 
-            Utils.NotImp("Read < 0x8000");
             return 0;         
         }
 
@@ -51,9 +50,9 @@ namespace NetBoy.Machine
             if (address < 0x8000)
             {
                 Cartridge.RomData[address] = value;
+                return;
             }
 
-            Utils.NotImp("Write < 0x8000");
         }
 
 
