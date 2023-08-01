@@ -42,9 +42,9 @@ namespace NetBoy
             Console.WriteLine($"Instruction (0x{code.ToString("X2")}) Not Implemented ");
         }
 
-        public static void InInfo(byte code, Instructions.In instruction)
+        public static void InInfo(byte code, Instructions.Instruction instruction)
         {
-            Console.WriteLine($"Instruction Type: {instruction.InstType} - (0x{code.ToString("X2")}). PC {Register.PC.ToString("X4")}. ");
+            Console.WriteLine($"Instruction Type: {instruction.Type} - (0x{code.ToString("X2")}). ");
 
 
         }

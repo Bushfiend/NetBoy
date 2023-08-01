@@ -11,7 +11,7 @@ namespace NetBoy.Machine
     {
         public Registers Register;
 
-        private Cart Cartridge;
+        public Cart Cartridge;
         private Bus Bus;
 
         private int EmuCycles;
@@ -35,6 +35,7 @@ namespace NetBoy.Machine
             Decode(CurrentOpcode);
 
             Register.PC++;
+
         }
 
 
@@ -43,12 +44,9 @@ namespace NetBoy.Machine
         {
             if(!Instructions.Set.ContainsKey(opcode)) { Utils.InvalidOp(opcode); return; }
 
+            var instruction = Instructions.Set[opcode];       
 
-
-            var instruction = Instructions.Set[opcode];
-
-
-            if(instruction.InstType == Instructions.InType.None)
+            if(instruction.Type == Instructions.InstructionType.None)
             {
                 Utils.NotImpl(opcode);
                 Register.PC--;
@@ -56,6 +54,9 @@ namespace NetBoy.Machine
             else
             {
                 Utils.InInfo(opcode, instruction);
+                instruction.Opcode = opcode;
+                Instructions.Execute(instruction, this);
+
             }
 
         }
